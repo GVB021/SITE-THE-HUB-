@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import {
   Award,
-  ChevronLeft,
-  ChevronRight,
   MessageCircle,
   Mic2,
   ShieldCheck,
@@ -21,8 +19,6 @@ import type { Teacher } from '../../types'
 const SLOT_TOTAL = 8
 const INITIAL_OCCUPIED = 6
 const COUNTDOWN_TARGET = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-const studioLogos = ['Netflix', 'Disney', 'HBO Max']
-
 const differentiators = [
   {
     title: 'Apenas 8 vagas por turma',
@@ -132,18 +128,8 @@ export default function LandingPage() {
   }, [])
 
   const remainingSlots = Math.max(SLOT_TOTAL - slotsFilled, 0)
-  const slotsProgress = (slotsFilled / SLOT_TOTAL) * 100
 
   const currentTestimonial = testimonials[testimonialIndex]
-
-  const handleTeacherNav = (direction: 'prev' | 'next') => {
-    setTeacherIndex((prev) => {
-      if (direction === 'next') {
-        return (prev + 1) % teachers.length
-      }
-      return (prev - 1 + teachers.length) % teachers.length
-    })
-  }
 
   const handleTestimonialNav = (index: number) => {
     setTestimonialIndex(index)
@@ -208,7 +194,7 @@ export default function LandingPage() {
         )}
       >
         <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 md:grid-cols-2">
-          {differentiators.map((diff, idx) => (
+          {differentiators.map((diff) => (
             <Card
               key={diff.title}
               className="flex gap-4 border-l-4 border-[#2563EB] bg-white shadow-card"
