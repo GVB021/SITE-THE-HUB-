@@ -14,6 +14,23 @@
   --hub-border: rgba(228, 228, 231, 0.5);
   --hub-blue: #2563eb;
   --hub-blue-dark: #1d4ed8;
+  
+  /* Responsive Typography */
+  --fluid-title-xl: clamp(48px, 8vw, 72px);
+  --fluid-title-lg: clamp(36px, 6vw, 56px);
+  --fluid-title-md: clamp(28px, 5vw, 42px);
+  --fluid-title-sm: clamp(24px, 4vw, 36px);
+  --fluid-text-lg: clamp(18px, 3vw, 24px);
+  --fluid-text-md: clamp(16px, 2.5vw, 20px);
+  --fluid-text-sm: clamp(14px, 2vw, 16px);
+  --fluid-text-xs: clamp(11px, 1.5vw, 13px);
+  
+  /* Responsive Spacing */
+  --fluid-spacing-xl: clamp(24px, 4vw, 48px);
+  --fluid-spacing-lg: clamp(20px, 3vw, 32px);
+  --fluid-spacing-md: clamp(16px, 2.5vw, 24px);
+  --fluid-spacing-sm: clamp(12px, 2vw, 16px);
+  --fluid-spacing-xs: clamp(8px, 1.5vw, 12px);
 }
 
 .fade-slide {
@@ -312,4 +329,44 @@ body.cursor-hidden * {
 .animate-fade-in-up {
   animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  :root {
+    --fluid-title-xl: clamp(36px, 10vw, 48px);
+    --fluid-title-lg: clamp(28px, 8vw, 40px);
+    --fluid-title-md: clamp(24px, 6vw, 32px);
+    --fluid-title-sm: clamp(20px, 5vw, 28px);
+    --fluid-text-lg: clamp(16px, 4vw, 20px);
+    --fluid-text-md: clamp(14px, 3.5vw, 18px);
+    --fluid-text-sm: clamp(12px, 3vw, 16px);
+    --fluid-text-xs: clamp(10px, 2.5vw, 13px);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --fluid-title-xl: clamp(56px, 6vw, 88px);
+    --fluid-title-lg: clamp(42px, 4.5vw, 68px);
+    --fluid-title-md: clamp(36px, 4vw, 56px);
+    --fluid-title-sm: clamp(28px, 3.5vw, 48px);
+    --fluid-text-lg: clamp(20px, 2.5vw, 28px);
+    --fluid-text-md: clamp(18px, 2vw, 24px);
+    --fluid-text-sm: clamp(16px, 1.8vw, 20px);
+    --fluid-text-xs: clamp(12px, 1.5vw, 16px);
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --fluid-title-xl: clamp(64px, 5vw, 96px);
+    --fluid-title-lg: clamp(48px, 4vw, 72px);
+    --fluid-title-md: clamp(40px, 3.5vw, 60px);
+    --fluid-title-sm: clamp(32px, 3vw, 48px);
+    --fluid-text-lg: clamp(22px, 2.2vw, 32px);
+    --fluid-text-md: clamp(20px, 2vw, 28px);
+    --fluid-text-sm: clamp(18px, 1.8vw, 24px);
+    --fluid-text-xs: clamp(14px, 1.5vw, 18px);
+  }
 }

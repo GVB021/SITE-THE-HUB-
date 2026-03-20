@@ -226,7 +226,7 @@ export default function HomePage() {
                   ))}
                   
                   {/* Centered content container */}
-                  <div className="relative z-10 mx-auto max-w-[680px] px-6 text-center">
+                  <div className="relative z-10 mx-auto px-6 text-center" style={{ maxWidth: 'min(680px, 90vw)' }}>
                     {/* Decorative line above */}
                     <div 
                       className="mb-6 animate-fade-in-up"
@@ -245,13 +245,15 @@ export default function HomePage() {
                       style={{ animationDelay: '0.2s' }}
                     >
                       <div 
-                        className="h-px w-[30px] bg-[#C9A84C]"
+                        className="h-px bg-[#C9A84C]"
+                        style={{ width: 'var(--fluid-spacing-sm)' }}
                       />
-                      <span className="text-[11px] font-semibold tracking-[5px] text-[#E8C96A] uppercase" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
+                      <span className="font-semibold uppercase text-[#E8C96A] animate-fade-in-up" style={{ fontSize: 'var(--fluid-text-xs)', letterSpacing: '5px', textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
                         ESCOLA DE DUBLAGEM PROFISSIONAL
                       </span>
                       <div 
-                        className="h-px w-[30px] bg-[#C9A84C]"
+                        className="h-px bg-[#C9A84C]"
+                        style={{ width: 'var(--fluid-spacing-sm)' }}
                       />
                     </div>
 
@@ -263,12 +265,13 @@ export default function HomePage() {
                         animationDelay: '0.4s'
                       }}
                     >
-                      <h1 className="text-[68px] font-bold leading-[1.05] tracking-[-2px] text-white" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
+                      <h1 className="font-bold leading-[1.05] tracking-[-2px] text-white" style={{ fontSize: 'var(--fluid-title-xl)', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
                         Sua Voz Pode
                       </h1>
                       <h1 
-                        className="text-[68px] font-bold leading-[1.05] tracking-[-2px]"
+                        className="font-bold leading-[1.05] tracking-[-2px]"
                         style={{
+                          fontSize: 'var(--fluid-title-xl)',
                           background: 'linear-gradient(135deg, #E8C96A 0%, #FFFFFF 60%)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
@@ -281,8 +284,11 @@ export default function HomePage() {
 
                     {/* 3. Subtitle */}
                     <p 
-                      className="mb-8 max-w-[500px] text-center text-[18px] leading-[1.7] text-white/90 font-normal animate-fade-in-up"
+                      className="mb-8 text-center text-white/90 font-normal animate-fade-in-up"
                       style={{ 
+                        fontSize: 'var(--fluid-text-lg)',
+                        maxWidth: 'min(500px, 90vw)',
+                        lineHeight: '1.7',
                         textShadow: '0 1px 8px rgba(0,0,0,0.9)',
                         animationDelay: '0.6s' 
                       }}
@@ -292,8 +298,10 @@ export default function HomePage() {
 
                     {/* 4. Simplified benefits line */}
                     <div 
-                      className="mb-8 text-[13px] tracking-[1px] text-white/75 animate-fade-in-up"
+                      className="mb-8 text-white/75 animate-fade-in-up"
                       style={{ 
+                        fontSize: 'var(--fluid-text-sm)',
+                        letterSpacing: '1px',
                         textShadow: '0 1px 4px rgba(0,0,0,0.9)',
                         animationDelay: '0.8s' 
                       }}
@@ -310,18 +318,18 @@ export default function HomePage() {
                         backdropFilter: 'blur(20px)',
                         WebkitBackdropFilter: 'blur(20px)',
                         borderRadius: '8px',
-                        padding: '14px 28px',
+                        padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-md)',
                         animationDelay: '1s'
                       }}
                     >
-                      <span className="text-[18px] text-[#C9A84C]">🎁</span>
-                      <span className="text-[14px] text-white">
+                      <span className="text-[#C9A84C]" style={{ fontSize: 'clamp(16px, 2.5vw, 18px)' }}>🎁</span>
+                      <span className="text-white" style={{ fontSize: 'var(--fluid-text-sm)' }}>
                         Ganhe um microfone condensador na sua matrícula
                       </span>
                       <div 
                         className="absolute -top-2 -right-2 rounded-[4px] bg-[rgba(201,168,76,0.2)] px-2 py-0.5"
                       >
-                        <span className="text-[10px] font-bold uppercase text-[#C9A84C]">
+                        <span className="font-bold uppercase text-[#C9A84C]" style={{ fontSize: 'var(--fluid-text-xs)' }}>
                           LANÇAMENTO
                         </span>
                       </div>
@@ -329,18 +337,21 @@ export default function HomePage() {
 
                     {/* 6. Luxury buttons */}
                     <div 
-                      className="mb-8 flex justify-center gap-4 animate-fade-in-up"
-                      style={{ animationDelay: '1.2s' }}
+                      className="mb-8 flex justify-center gap-4 animate-fade-in-up flex-wrap"
+                      style={{ 
+                        animationDelay: '1.2s',
+                        gap: 'var(--fluid-spacing-sm)'
+                      }}
                     >
                       <button
-                        className="transition-all hover:translate-y-[-2px]"
+                        className="transition-all hover:translate-y-[-2px] flex-1 min-w-[200px]"
                         style={{
                           background: 'linear-gradient(135deg, #C9A84C, #E8C96A)',
                           color: '#0A0A0A',
                           fontWeight: '700',
-                          fontSize: '15px',
+                          fontSize: 'var(--fluid-text-sm)',
                           letterSpacing: '1px',
-                          padding: '18px 48px',
+                          padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
                           borderRadius: '4px',
                           border: 'none'
                         }}
@@ -354,13 +365,13 @@ export default function HomePage() {
                         GARANTIR MINHA VAGA →
                       </button>
                       <button
-                        className="transition-all hover:bg-white/5"
+                        className="transition-all hover:bg-white/5 flex-1 min-w-[200px]"
                         style={{
                           background: 'transparent',
                           border: '1px solid rgba(255,255,255,0.3)',
                           color: 'rgba(255,255,255,0.9)',
-                          fontSize: '15px',
-                          padding: '18px 48px',
+                          fontSize: 'var(--fluid-text-sm)',
+                          padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
                           borderRadius: '4px'
                         }}
                         onMouseEnter={(e) => {
@@ -376,8 +387,12 @@ export default function HomePage() {
 
                     {/* 7. Trust line */}
                     <p 
-                      className="text-[12px] tracking-[2px] text-white/35 animate-fade-in-up"
-                      style={{ animationDelay: '1.4s' }}
+                      className="text-white/35 animate-fade-in-up text-center"
+                      style={{ 
+                        fontSize: 'var(--fluid-text-xs)',
+                        letterSpacing: '2px',
+                        animationDelay: '1.4s'
+                      }}
                     >
                       ✓ Sem fidelidade <span className="text-[#C9A84C]/40">·</span> ✓ Cancele quando quiser <span className="text-[#C9A84C]/40">·</span> ✓ Suporte incluído
                     </p>
@@ -387,7 +402,7 @@ export default function HomePage() {
                       className="mt-6 animate-fade-in-up"
                       style={{ 
                         height: '1px',
-                        width: '200px',
+                        width: 'clamp(120px, 20vw, 200px)',
                         background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.6), transparent)',
                         margin: '0 auto',
                         animationDelay: '1.5s'
@@ -398,10 +413,11 @@ export default function HomePage() {
               ) : s.id === 2 ? (
                 /* Sales-focused layout for Slide 2 (Ettore Zuim) */
                 <div className="relative z-20 flex h-full w-full justify-end">
-                  {/* Sales Panel - Right Side (45% width) */}
+                  {/* Sales Panel - Right Side (responsive width) */}
                   <div
-                    className="flex h-full w-[45%] flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10"
+                    className="flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10"
                     style={{
+                      width: 'clamp(320px, 45vw, 500px)',
                       backgroundColor: 'rgba(0,0,0,0.75)',
                       backdropFilter: 'blur(12px)',
                       WebkitBackdropFilter: 'blur(12px)',
@@ -418,16 +434,16 @@ export default function HomePage() {
 
                       {/* 2. Two-line title */}
                       <div className="space-y-1">
-                        <h1 className="text-[40px] font-bold leading-tight text-white md:text-[48px]">
+                        <h1 className="font-bold leading-tight text-white" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
                           Aprenda Dublagem com Ettore Zuim
                         </h1>
-                        <h2 className="text-[34px] font-bold italic leading-tight text-[#C9A84C] md:text-[42px]">
+                        <h2 className="font-bold italic leading-tight text-[#C9A84C]" style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}>
                           O Dublador do Batman
                         </h2>
                       </div>
 
                       {/* Bio paragraph */}
-                      <p className="text-[18px] italic leading-relaxed text-[#F5F5F5] line-clamp-3">
+                      <p className="italic leading-relaxed text-[#F5F5F5] line-clamp-3" style={{ fontSize: 'clamp(16px, 2.5vw, 18px)' }}>
                         "Mais de 30 anos emprestando sua voz aos maiores personagens do cinema e da animação mundial. Dublador oficial do Batman, Hércules, Owen Wilson e dezenas de ícones — agora disponível para transformar a sua voz."
                       </p>
 
