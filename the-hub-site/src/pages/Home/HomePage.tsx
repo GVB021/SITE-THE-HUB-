@@ -160,7 +160,7 @@ export default function HomePage() {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-6 py-4 md:px-12">
+      <nav className={`fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-6 py-4 md:px-12 ${isMobile ? 'mobile-navbar' : ''}`}>
         <Logo />
 
         <div className="hidden items-center gap-8 md:flex">
@@ -178,13 +178,15 @@ export default function HomePage() {
         <div className="flex items-center gap-4">
           <Link
             to="/login"
-            className="text-sm font-medium text-white/90 transition hover:text-white"
+            className={`text-sm font-medium text-white/90 transition hover:text-white ${isMobile ? '' : ''}`}
+            style={{ fontSize: isMobile ? '12px' : '' }}
           >
             Entrar
           </Link>
           <Link
             to="/matricula"
-            className="rounded-md bg-[#2563EB] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1D4ED8] hover:scale-[1.02]"
+            className={`rounded-md bg-[#2563EB] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1D4ED8] hover:scale-[1.02] ${isMobile ? '' : ''}`}
+            style={{ fontSize: isMobile ? '12px' : '', padding: isMobile ? '6px 12px' : '' }}
           >
             Matricular-se
           </Link>
@@ -242,12 +244,12 @@ export default function HomePage() {
               {/* Content */}
               {s.id === 1 ? (
                 /* Premium Welcome layout for Slide 1 (THE HUB ACADEMY) */
-                <div className={`relative z-20 flex h-full w-full items-center justify-center overflow-hidden ${isMobile ? 'flex-col' : ''}`}>
+                <div className={`relative z-20 flex h-full w-full items-center justify-center overflow-hidden ${isMobile ? 'mobile-slide-layout' : ''}`}>
                   {/* Simplified overlay layer */}
                   <div 
-                    className="absolute inset-0"
+                    className={`absolute inset-0 ${isMobile ? 'mobile-slide-overlay' : ''}`}
                     style={{
-                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.95) 100%)'
+                      background: isMobile ? 'rgba(0,0,0,0.80)' : 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.95) 100%)'
                     }}
                   />
                   
@@ -269,7 +271,7 @@ export default function HomePage() {
                   ))}
                   
                   {/* Centered content container */}
-                  <div className={`relative z-10 px-6 text-center ${isMobile ? 'w-full' : ''}`} style={{ maxWidth: isMobile ? '100vw' : 'min(680px, 90vw)' }}>
+                  <div className={`relative z-10 px-6 text-center ${isMobile ? 'w-full mobile-slide-panel' : ''}`} style={{ maxWidth: isMobile ? '100vw' : 'min(680px, 90vw)' }}>
                     {/* Decorative line above */}
                     <div 
                       className="mb-6 animate-fade-in-up"
@@ -291,7 +293,7 @@ export default function HomePage() {
                         className="h-px bg-[#C9A84C]"
                         style={{ width: isMobile ? 'var(--mobile-spacing)' : 'var(--fluid-spacing-sm)' }}
                       />
-                      <span className={`font-semibold uppercase text-[#E8C96A] animate-fade-in-up ${isMobile ? 'text-xs' : ''}`} style={{ fontSize: isMobile ? 'var(--fluid-text-xs)' : 'var(--fluid-text-xs)', letterSpacing: isMobile ? '3px' : '5px', textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
+                      <span className={`font-semibold uppercase text-[#E8C96A] animate-fade-in-up ${isMobile ? 'text-xs mobile-badge' : ''}`} style={{ fontSize: isMobile ? '10px' : 'var(--fluid-text-xs)', letterSpacing: isMobile ? '3px' : '5px', textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
                         ESCOLA DE DUBLAGEM PROFISSIONAL
                       </span>
                       <div 
@@ -308,13 +310,13 @@ export default function HomePage() {
                         animationDelay: '0.4s'
                       }}
                     >
-                      <h1 className={`font-bold leading-tight tracking-[-2px] text-white ${isMobile ? 'text-center' : ''}`} style={{ fontSize: isMobile ? 'var(--mobile-title-xl)' : 'var(--fluid-title-xl)', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
+                      <h1 className={`font-bold leading-tight tracking-[-2px] text-white ${isMobile ? 'text-center mobile-slide-1-title-1' : ''}`} style={{ fontSize: isMobile ? '48px' : 'var(--fluid-title-xl)', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
                         Sua Voz Pode
                       </h1>
                       <h1 
-                        className={`font-bold leading-tight tracking-[-2px] ${isMobile ? 'text-center' : ''}`}
+                        className={`font-bold leading-tight tracking-[-2px] ${isMobile ? 'text-center mobile-slide-1-title-2' : ''}`}
                         style={{
-                          fontSize: isMobile ? 'var(--mobile-title-xl)' : 'var(--fluid-title-xl)',
+                          fontSize: isMobile ? '44px' : 'var(--fluid-title-xl)',
                           background: 'linear-gradient(135deg, #E8C96A 0%, #FFFFFF 60%)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
@@ -327,9 +329,9 @@ export default function HomePage() {
 
                     {/* 3. Subtitle */}
                     <p 
-                      className="mb-8 text-center text-white/90 font-normal animate-fade-in-up"
+                      className={`mb-8 text-center text-white/90 font-normal animate-fade-in-up ${isMobile ? 'mobile-slide-1-subtitle' : ''}`}
                       style={{ 
-                        fontSize: 'var(--fluid-text-lg)',
+                        fontSize: isMobile ? '15px' : 'var(--fluid-text-lg)',
                         maxWidth: 'min(500px, 90vw)',
                         lineHeight: '1.7',
                         textShadow: '0 1px 8px rgba(0,0,0,0.9)',
@@ -341,32 +343,44 @@ export default function HomePage() {
 
                     {/* 4. Simplified benefits line */}
                     <div 
-                      className="mb-8 text-white/75 animate-fade-in-up"
+                      className={`mb-8 text-white/75 animate-fade-in-up ${isMobile ? 'mobile-slide-1-benefits' : ''}`}
                       style={{ 
-                        fontSize: 'var(--fluid-text-sm)',
+                        fontSize: isMobile ? '13px' : 'var(--fluid-text-sm)',
                         letterSpacing: '1px',
                         textShadow: '0 1px 4px rgba(0,0,0,0.9)',
                         animationDelay: '0.8s' 
                       }}
                     >
-                      🎙 Aulas Ao Vivo · <span className="text-[#C9A84C]">·</span> · 8 Alunos Máx · <span className="text-[#C9A84C]">·</span> · Certificado · <span className="text-[#C9A84C]">·</span> · Mercado Real
+                      {isMobile ? (
+                        <>
+                          <div>🎙 Aulas Ao Vivo</div>
+                          <div>·</div>
+                          <div>8 Alunos Máx</div>
+                          <div>·</div>
+                          <div>Certificado</div>
+                          <div>·</div>
+                          <div>Mercado Real</div>
+                        </>
+                      ) : (
+                        <>🎙 Aulas Ao Vivo · <span className="text-[#C9A84C]">·</span> · 8 Alunos Máx · <span className="text-[#C9A84C]">·</span> · Certificado · <span className="text-[#C9A84C]">·</span> · Mercado Real</>
+                      )}
                     </div>
 
                     {/* 5. Premium promotion card */}
                     <div 
-                      className="relative mb-8 inline-flex items-center gap-2.5 animate-fade-in-up"
+                      className={`relative mb-8 inline-flex items-center gap-2.5 animate-fade-in-up ${isMobile ? 'mobile-promo-card' : ''}`}
                       style={{ 
                         border: '1px solid rgba(201,168,76,0.5)',
                         background: 'rgba(0,0,0,0.6)',
                         backdropFilter: 'blur(20px)',
                         WebkitBackdropFilter: 'blur(20px)',
                         borderRadius: '8px',
-                        padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-md)',
+                        padding: isMobile ? '12px' : 'var(--fluid-spacing-sm) var(--fluid-spacing-md)',
                         animationDelay: '1s'
                       }}
                     >
                       <span className="text-[#C9A84C]" style={{ fontSize: 'clamp(16px, 2.5vw, 18px)' }}>🎁</span>
-                      <span className="text-white" style={{ fontSize: 'var(--fluid-text-sm)' }}>
+                      <span className="text-white" style={{ fontSize: isMobile ? '13px' : 'var(--fluid-text-sm)' }}>
                         Ganhe um microfone condensador na sua matrícula
                       </span>
                       <div 
@@ -380,21 +394,21 @@ export default function HomePage() {
 
                     {/* 6. Luxury buttons */}
                     <div 
-                      className="mb-8 flex justify-center gap-4 animate-fade-in-up flex-wrap"
+                      className={`mb-8 flex justify-center gap-4 animate-fade-in-up ${isMobile ? 'mobile-buttons' : ''}`}
                       style={{ 
                         animationDelay: '1.2s',
-                        gap: 'var(--fluid-spacing-sm)'
+                        gap: isMobile ? 'var(--fluid-spacing-sm)' : '4px'
                       }}
                     >
                       <button
-                        className="transition-all hover:translate-y-[-2px] flex-1 min-w-[200px]"
+                        className={`transition-all hover:translate-y-[-2px] flex-1 min-w-[200px] ${isMobile ? '' : ''}`}
                         style={{
                           background: 'linear-gradient(135deg, #C9A84C, #E8C96A)',
                           color: '#0A0A0A',
                           fontWeight: '700',
-                          fontSize: 'var(--fluid-text-sm)',
+                          fontSize: isMobile ? '14px' : 'var(--fluid-text-sm)',
                           letterSpacing: '1px',
-                          padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
+                          padding: isMobile ? '14px 20px' : 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
                           borderRadius: '4px',
                           border: 'none'
                         }}
@@ -408,13 +422,13 @@ export default function HomePage() {
                         GARANTIR MINHA VAGA →
                       </button>
                       <button
-                        className="transition-all hover:bg-white/5 flex-1 min-w-[200px]"
+                        className={`transition-all hover:bg-white/5 flex-1 min-w-[200px] ${isMobile ? '' : ''}`}
                         style={{
                           background: 'transparent',
                           border: '1px solid rgba(255,255,255,0.3)',
                           color: 'rgba(255,255,255,0.9)',
-                          fontSize: 'var(--fluid-text-sm)',
-                          padding: 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
+                          fontSize: isMobile ? '14px' : 'var(--fluid-text-sm)',
+                          padding: isMobile ? '14px 20px' : 'var(--fluid-spacing-sm) var(--fluid-spacing-lg)',
                           borderRadius: '4px'
                         }}
                         onMouseEnter={(e) => {
@@ -455,38 +469,38 @@ export default function HomePage() {
                 </div>
               ) : s.id === 2 ? (
                 /* Sales-focused layout for Slide 2 (Ettore Zuim) */
-                <div className="relative z-20 flex h-full w-full justify-end">
+                <div className={`relative z-20 flex h-full w-full ${isMobile ? 'mobile-slide-layout' : 'justify-end'}`}>
                   {/* Sales Panel - Right Side (responsive width) */}
                   <div
-                    className="flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10"
+                    className={`flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10 ${isMobile ? 'mobile-slide-panel' : ''}`}
                     style={{
-                      width: 'clamp(320px, 45vw, 500px)',
-                      backgroundColor: 'rgba(0,0,0,0.75)',
-                      backdropFilter: 'blur(12px)',
-                      WebkitBackdropFilter: 'blur(12px)',
+                      width: isMobile ? '100%' : 'clamp(320px, 45vw, 500px)',
+                      backgroundColor: isMobile ? 'transparent' : 'rgba(0,0,0,0.75)',
+                      backdropFilter: isMobile ? 'none' : 'blur(12px)',
+                      WebkitBackdropFilter: isMobile ? 'none' : 'blur(12px)',
                     }}
                   >
                     <div className="flex flex-col space-y-5">
                       {/* 1. AO VIVO Badge with pulsing red dot */}
                       <div className="flex items-center gap-2">
                         <span className="flex h-2.5 w-2.5 rounded-full bg-red-500 live-dot" />
-                        <span className="text-sm font-bold tracking-wider text-[#C9A84C]">
+                        <span className={`text-sm font-bold tracking-wider text-[#C9A84C] ${isMobile ? 'mobile-badge' : ''}`}>
                           AO VIVO — VAGAS ABERTAS
                         </span>
                       </div>
 
                       {/* 2. Two-line title */}
                       <div className="space-y-1">
-                        <h1 className="font-bold leading-tight text-white" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
+                        <h1 className={`font-bold leading-tight text-white ${isMobile ? 'mobile-title-1' : ''}`} style={{ fontSize: isMobile ? '28px' : 'clamp(32px, 5vw, 48px)' }}>
                           Aprenda Dublagem com Ettore Zuim
                         </h1>
-                        <h2 className="font-bold italic leading-tight text-[#C9A84C]" style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}>
+                        <h2 className={`font-bold italic leading-tight text-[#C9A84C] ${isMobile ? 'mobile-title-2' : ''}`} style={{ fontSize: isMobile ? '24px' : 'clamp(28px, 4vw, 42px)' }}>
                           O Dublador do Batman
                         </h2>
                       </div>
 
                       {/* Bio paragraph */}
-                      <p className="italic leading-relaxed text-[#F5F5F5] line-clamp-3" style={{ fontSize: 'clamp(16px, 2.5vw, 18px)' }}>
+                      <p className={`italic leading-relaxed text-[#F5F5F5] line-clamp-3 ${isMobile ? 'mobile-bio' : ''}`} style={{ fontSize: isMobile ? '14px' : 'clamp(16px, 2.5vw, 18px)' }}>
                         "Mais de 30 anos emprestando sua voz aos maiores personagens do cinema e da animação mundial. Dublador oficial do Batman, Hércules, Owen Wilson e dezenas de ícones — agora disponível para transformar a sua voz."
                       </p>
 
@@ -494,7 +508,7 @@ export default function HomePage() {
                       <div className="h-px w-full bg-[#C9A84C]/50" />
 
                       {/* 4. Character badges with hover tooltips */}
-                      <div className="flex flex-wrap justify-between gap-2">
+                      <div className={`flex flex-wrap justify-between gap-2 ${isMobile ? 'mobile-character-badges' : ''}`}>
                         {[
                           { name: 'Batman', bio: 'O Cavaleiro das Trevas. Herói da DC Comics dublado por Ettore nas animações e filmes da franquia.' },
                           { name: 'Mihawk', bio: 'O maior espadachim do mundo em One Piece. Rival eterno de Zoro e membro dos Shichibukai.' },
@@ -506,7 +520,7 @@ export default function HomePage() {
                           { name: 'Príncipe Encantado', bio: 'O príncipe clássico da Disney, presente em Cinderela e Shrek 2.' },
                         ].map((char) => (
                           <div key={char.name} className="group relative">
-                            <span className="inline-block rounded border border-[#C9A84C]/40 bg-[#C9A84C]/15 px-2.5 py-1 text-xs font-medium text-[#C9A84C]/90 transition-colors hover:bg-[#C9A84C]/25 cursor-help">
+                            <span className={`inline-block rounded border border-[#C9A84C]/40 bg-[#C9A84C]/15 px-2.5 py-1 text-xs font-medium text-[#C9A84C]/90 transition-colors hover:bg-[#C9A84C]/25 cursor-help ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '11px' : '', padding: isMobile ? '4px 10px' : '' }}>
                               {char.name}
                             </span>
                             {/* Tooltip */}
@@ -528,9 +542,9 @@ export default function HomePage() {
                       </p>
 
                       {/* 8. Premium Course Cards */}
-                      <div className="grid gap-4 sm:grid-cols-2">
+                      <div className={`grid gap-4 ${isMobile ? 'mobile-course-cards' : 'sm:grid-cols-2'}`}>
                         {/* Online card */}
-                        <div className="min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl" style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)' }}>
+                        <div className={`min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl ${isMobile ? '' : ''}`} style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)' }}>
                           {/* Premium badge */}
                           <div className="mb-4 flex items-center gap-2">
                             <span className="flex h-3 w-3 rounded-full bg-green-500 live-dot" />
@@ -538,30 +552,30 @@ export default function HomePage() {
                           </div>
                           <div className="mb-4 flex items-center gap-3">
                             <span className="text-2xl">🌐</span>
-                            <h3 className="text-lg font-bold text-white">Online ao Vivo</h3>
+                            <h3 className={`text-lg font-bold text-white ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '' }}>Online ao Vivo</h3>
                           </div>
                           <div className="space-y-3">
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">🎁</span>
-                              <span>Segunda • 19h às 21h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Segunda • 19h às 21h</span>
                             </div>
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">⚡</span>
-                              <span>Terça • 16h às 18h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Terça • 16h às 18h</span>
                             </div>
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">🕐</span>
-                              <span>Terça • 19h às 21h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Terça • 19h às 21h</span>
                             </div>
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">🎁</span>
-                              <span>Sábado • 16h às 18h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Sábado • 16h às 18h</span>
                             </div>
                           </div>
                         </div>
 
                         {/* Presencial card */}
-                        <div className="min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl" style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)' }}>
+                        <div className={`min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl ${isMobile ? '' : ''}`} style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)' }}>
                           {/* Premium badge */}
                           <div className="mb-4 flex items-center gap-2">
                             <span className="flex h-3 w-3 rounded-full bg-green-500 live-dot" />
@@ -569,16 +583,16 @@ export default function HomePage() {
                           </div>
                           <div className="mb-4 flex items-center gap-3">
                             <span className="text-2xl">📍</span>
-                            <h3 className="text-lg font-bold text-white">Presencial São Paulo</h3>
+                            <h3 className="text-lg font-bold text-white" style={{ fontSize: isMobile ? '13px' : '' }}>Presencial São Paulo</h3>
                           </div>
                           <div className="space-y-3">
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">🕐</span>
-                              <span>Sábado • 15h às 17h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Sábado • 15h às 17h</span>
                             </div>
                             <div className="flex items-center gap-3 text-base font-medium text-white">
                               <span className="text-lg">⚡</span>
-                              <span>Quarta • 19h às 21h</span>
+                              <span style={{ fontSize: isMobile ? '13px' : '' }}>Quarta • 19h às 21h</span>
                             </div>
                           </div>
                         </div>
@@ -614,12 +628,12 @@ export default function HomePage() {
                       </div>
 
                       {/* Promo card */}
-                      <div className="rounded-lg border border-[#C9A84C]/60 p-4" style={{ backgroundColor: 'rgba(212,175,55,0.2)' }}>
-                        <div className="flex items-center gap-2 text-base font-bold text-[#C9A84C]">
+                      <div className={`rounded-lg border border-[#C9A84C]/60 p-4 ${isMobile ? 'mobile-promo-card' : ''}`} style={{ backgroundColor: 'rgba(212,175,55,0.2)' }}>
+                        <div className={`flex items-center gap-2 text-base font-bold text-[#C9A84C] ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '' }}>
                           <span>🎁</span>
                           GANHE UM MICROFONE CONDENSADOR
                         </div>
-                        <p className="mt-3 text-sm leading-relaxed text-white/90">
+                        <p className={`mt-3 leading-relaxed text-white/90 ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '' }}>
                           Um microfone condensador real, na sua mão, desde a primeira aula. Com ele você já começa a treinar com o equipamento certo — capta sua voz com clareza, elimina ruídos do ambiente e te coloca no modo estúdio toda vez que ligar. Nada de gravar pelo celular ou fone de ouvido. Você chega no primeiro dia de aula com o setup profissional pronto.
                         </p>
                         <p className="mt-3 text-sm font-semibold text-[#C9A84C]">
@@ -639,10 +653,11 @@ export default function HomePage() {
                       </p>
 
                       {/* 11. Two buttons */}
-                      <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                      <div className={`flex flex-col gap-3 pt-2 ${isMobile ? 'mobile-buttons' : 'sm:flex-row'}`}>
                         <Link
                           to="/matricula"
-                          className="shimmer-button inline-flex flex-1 items-center justify-center rounded-lg px-6 py-4 text-sm font-bold text-[#0a0a0a] transition-transform hover:scale-[1.02]"
+                          className={`shimmer-button inline-flex flex-1 items-center justify-center rounded-lg px-6 py-4 font-bold text-[#0a0a0a] transition-transform hover:scale-[1.02] ${isMobile ? '' : ''}`}
+                          style={{ fontSize: isMobile ? '14px' : '', padding: isMobile ? '14px 20px' : '' }}
                         >
                           GARANTIR MINHA VAGA →
                         </Link>
@@ -650,7 +665,8 @@ export default function HomePage() {
                           href="https://wa.me/5511983942763"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-transparent px-6 py-4 text-sm font-semibold text-[#25D366] transition-all hover:bg-[#25D366]/10 hover:scale-[1.02]"
+                          className={`inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#25D366] bg-transparent px-6 py-4 font-semibold text-[#25D366] transition-all hover:bg-[#25D366]/10 hover:scale-[1.02] ${isMobile ? '' : ''}`}
+                          style={{ fontSize: isMobile ? '14px' : '', padding: isMobile ? '14px 20px' : '' }}
                         >
                           💬 Falar no WhatsApp
                         </a>

@@ -408,6 +408,117 @@ body.cursor-hidden * {
     background: #C9A84C;
     transform: scale(1.2);
   }
+  
+  /* MOBILE SLIDE LAYOUT CORRECTIONS */
+  .mobile-slide-layout {
+    flex-direction: column !important;
+    height: 100dvh;
+    width: 100%;
+  }
+  
+  .mobile-slide-overlay {
+    background: rgba(0, 0, 0, 0.80) !important;
+  }
+  
+  .mobile-slide-panel {
+    width: 100% !important;
+    padding: 80px 20px 30px 20px !important;
+    overflow-y: auto;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Mobile typography */
+  .mobile-title-1 {
+    font-size: 28px !important;
+  }
+  
+  .mobile-title-2 {
+    font-size: 24px !important;
+  }
+  
+  .mobile-bio {
+    font-size: 14px !important;
+  }
+  
+  .mobile-badge {
+    font-size: 10px !important;
+  }
+  
+  /* Mobile character badges */
+  .mobile-character-badges {
+    flex-wrap: wrap !important;
+  }
+  
+  .mobile-character-badges span {
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+  }
+  
+  /* Mobile course cards */
+  .mobile-course-cards {
+    flex-direction: column !important;
+  }
+  
+  .mobile-course-cards > div {
+    width: 100% !important;
+    font-size: 13px !important;
+  }
+  
+  /* Mobile promo card */
+  .mobile-promo-card {
+    font-size: 13px !important;
+    padding: 12px !important;
+  }
+  
+  /* Mobile buttons */
+  .mobile-buttons {
+    flex-direction: column !important;
+  }
+  
+  .mobile-buttons button {
+    width: 100% !important;
+    padding: 14px 20px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Mobile navbar */
+  .mobile-navbar {
+    padding: 12px 16px !important;
+  }
+  
+  .mobile-navbar .logo {
+    font-size: 16px !important;
+  }
+  
+  .mobile-navbar button {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+  
+  /* Slide 1 specific mobile styles */
+  .mobile-slide-1-title-1 {
+    font-size: 48px !important;
+  }
+  
+  .mobile-slide-1-title-2 {
+    font-size: 44px !important;
+  }
+  
+  .mobile-slide-1-subtitle {
+    font-size: 15px !important;
+  }
+  
+  .mobile-slide-1-benefits {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  
+  .mobile-slide-1-benefits > div {
+    flex: 1 1 45% !important;
+    min-width: 120px;
+  }
 }
 
 @media (min-width: 1920px) {
