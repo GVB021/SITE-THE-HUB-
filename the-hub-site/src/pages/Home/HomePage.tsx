@@ -49,7 +49,10 @@ export default function HomePage() {
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
   const [showArrows, setShowArrows] = useState(false)
   const [selectedCharacter, setSelectedCharacter] = useState<{ name: string; bio: string; image: string } | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
   const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
   const goToSlide = useCallback((index: number, dir: 'next' | 'prev' = 'next') => {
     if (isTransitioning) return
@@ -105,6 +108,43 @@ export default function HomePage() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [nextSlide, prevSlide])
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Touch/Swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const diff = touchStartX.current - touchEndX.current
+    const threshold = 50 // Minimum swipe distance
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextSlide() // Swipe left, go next
+      } else {
+        prevSlide() // Swipe right, go prev
+      }
+    }
+    
+    touchStartX.current = null
+    touchEndX.current = null
+  }
+
 
   return (
     <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-[#0a0a0a]">
@@ -153,13 +193,16 @@ export default function HomePage() {
 
       {/* Slides Container */}
       <div
-        className="relative h-full w-full"
+        className={`relative h-full w-full ${isMobile ? 'carousel-mobile' : ''}`}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => {
           setIsPaused(false)
           setShowArrows(false)
         }}
         onMouseMove={() => setShowArrows(true)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {slides.map((s, index) => {
           const isActive = index === currentSlide
@@ -199,7 +242,7 @@ export default function HomePage() {
               {/* Content */}
               {s.id === 1 ? (
                 /* Premium Welcome layout for Slide 1 (THE HUB ACADEMY) */
-                <div className="relative z-20 flex h-full w-full items-center justify-center overflow-hidden">
+                <div className={`relative z-20 flex h-full w-full items-center justify-center overflow-hidden ${isMobile ? 'flex-col' : ''}`}>
                   {/* Simplified overlay layer */}
                   <div 
                     className="absolute inset-0"
@@ -226,7 +269,7 @@ export default function HomePage() {
                   ))}
                   
                   {/* Centered content container */}
-                  <div className="relative z-10 mx-auto px-6 text-center" style={{ maxWidth: 'min(680px, 90vw)' }}>
+                  <div className={`relative z-10 px-6 text-center ${isMobile ? 'w-full' : ''}`} style={{ maxWidth: isMobile ? '100vw' : 'min(680px, 90vw)' }}>
                     {/* Decorative line above */}
                     <div 
                       className="mb-6 animate-fade-in-up"
@@ -241,37 +284,37 @@ export default function HomePage() {
 
                     {/* 1. Eyebrow label with decorative lines */}
                     <div 
-                      className="mb-8 flex items-center justify-center gap-3 animate-fade-in-up"
+                      className={`mb-8 flex items-center justify-center gap-3 animate-fade-in-up ${isMobile ? 'flex-wrap' : ''}`}
                       style={{ animationDelay: '0.2s' }}
                     >
                       <div 
                         className="h-px bg-[#C9A84C]"
-                        style={{ width: 'var(--fluid-spacing-sm)' }}
+                        style={{ width: isMobile ? 'var(--mobile-spacing)' : 'var(--fluid-spacing-sm)' }}
                       />
-                      <span className="font-semibold uppercase text-[#E8C96A] animate-fade-in-up" style={{ fontSize: 'var(--fluid-text-xs)', letterSpacing: '5px', textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
+                      <span className={`font-semibold uppercase text-[#E8C96A] animate-fade-in-up ${isMobile ? 'text-xs' : ''}`} style={{ fontSize: isMobile ? 'var(--fluid-text-xs)' : 'var(--fluid-text-xs)', letterSpacing: isMobile ? '3px' : '5px', textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
                         ESCOLA DE DUBLAGEM PROFISSIONAL
                       </span>
                       <div 
                         className="h-px bg-[#C9A84C]"
-                        style={{ width: 'var(--fluid-spacing-sm)' }}
+                        style={{ width: isMobile ? 'var(--mobile-spacing)' : 'var(--fluid-spacing-sm)' }}
                       />
                     </div>
 
                     {/* 2. Main title - two lines with effects */}
                     <div 
-                      className="mb-6 animate-fade-in-up"
+                      className={`mb-6 animate-fade-in-up ${isMobile ? 'px-4' : ''}`}
                       style={{ 
                         filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.9))',
                         animationDelay: '0.4s'
                       }}
                     >
-                      <h1 className="font-bold leading-[1.05] tracking-[-2px] text-white" style={{ fontSize: 'var(--fluid-title-xl)', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
+                      <h1 className={`font-bold leading-tight tracking-[-2px] text-white ${isMobile ? 'text-center' : ''}`} style={{ fontSize: isMobile ? 'var(--mobile-title-xl)' : 'var(--fluid-title-xl)', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
                         Sua Voz Pode
                       </h1>
                       <h1 
-                        className="font-bold leading-[1.05] tracking-[-2px]"
+                        className={`font-bold leading-tight tracking-[-2px] ${isMobile ? 'text-center' : ''}`}
                         style={{
-                          fontSize: 'var(--fluid-title-xl)',
+                          fontSize: isMobile ? 'var(--mobile-title-xl)' : 'var(--fluid-title-xl)',
                           background: 'linear-gradient(135deg, #E8C96A 0%, #FFFFFF 60%)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
@@ -752,6 +795,20 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Mobile Dots Indicator */}
+        {isMobile && (
+          <div className="mobile-dots">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                className={`mobile-dot ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => goToSlide(index)}
+                aria-label={`Ir para slide ${index + 1}`}
+              />
+            ))}
           </div>
         )}
 
