@@ -187,7 +187,6 @@ export default function HomePage() {
               <div
                 className="absolute inset-0 h-full w-full"
                 style={{
-                  background: s.background || 'transparent',
                   backgroundImage: s.backgroundImage
                     ? `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%), url(${s.backgroundImage})`
                     : undefined,
