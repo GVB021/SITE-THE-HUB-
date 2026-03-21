@@ -147,7 +147,7 @@ export default function HomePage() {
 
 
   return (
-    <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-[#0a0a0a]">
+    <div className="fixed inset-0 h-screen w-screen bg-[#0a0a0a]" style={{ overflowX: 'hidden' }}>
       {/* Progress Bar */}
       <div className="fixed left-0 right-0 top-0 z-50 h-1 w-full bg-white/10">
         <div
@@ -214,7 +214,7 @@ export default function HomePage() {
           return (
             <div
               key={s.id}
-              className="absolute inset-0 h-full w-full transition-all duration-[1200ms] ease-in-out"
+              className={`absolute inset-0 h-full w-full transition-all duration-[1200ms] ease-in-out ${isMobile ? 'mobile-slide-root' : ''}`}
               style={{
                 opacity: isActive ? 1 : 0,
                 transform: isActive
@@ -230,14 +230,14 @@ export default function HomePage() {
             >
               {/* Background */}
               <div
-                className="absolute inset-0 h-full w-full"
+                className={`absolute inset-0 h-full w-full ${isMobile ? 'mobile-background' : ''}`}
                 style={{
                   backgroundImage: s.backgroundImage
                     ? `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%), url(${s.backgroundImage})`
                     : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  filter: s.backgroundImage ? 'blur(3px) brightness(0.4)' : 'none'
+                  filter: s.backgroundImage ? 'blur(2px) brightness(0.35)' : 'none'
                 }}
               />
 
@@ -271,7 +271,7 @@ export default function HomePage() {
                   ))}
                   
                   {/* Centered content container */}
-                  <div className={`relative z-10 px-6 text-center ${isMobile ? 'w-full mobile-slide-panel' : ''}`} style={{ maxWidth: isMobile ? '100vw' : 'min(680px, 90vw)' }}>
+                  <div className={`relative z-10 px-6 text-center ${isMobile ? 'w-full mobile-slide-panel mobile-panel-content' : ''}`} style={{ maxWidth: isMobile ? '100vw' : 'min(680px, 90vw)' }}>
                     {/* Decorative line above */}
                     <div 
                       className="mb-6 animate-fade-in-up"
@@ -472,12 +472,13 @@ export default function HomePage() {
                 <div className={`relative z-20 flex h-full w-full ${isMobile ? 'mobile-slide-layout' : 'justify-end'}`}>
                   {/* Sales Panel - Right Side (responsive width) */}
                   <div
-                    className={`flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10 ${isMobile ? 'mobile-slide-panel' : ''}`}
+                    className={`flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10 ${isMobile ? 'mobile-slide-panel mobile-panel-container mobile-panel-content' : ''}`}
                     style={{
                       width: isMobile ? '100%' : 'clamp(320px, 45vw, 500px)',
                       backgroundColor: isMobile ? 'transparent' : 'rgba(0,0,0,0.75)',
                       backdropFilter: isMobile ? 'none' : 'blur(12px)',
                       WebkitBackdropFilter: isMobile ? 'none' : 'blur(12px)',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <div className="flex flex-col space-y-5">
@@ -542,9 +543,9 @@ export default function HomePage() {
                       </p>
 
                       {/* 8. Premium Course Cards */}
-                      <div className={`grid gap-4 ${isMobile ? 'mobile-course-cards' : 'sm:grid-cols-2'}`}>
+                      <div className={`${isMobile ? 'mobile-course-cards' : 'grid sm:grid-cols-2'} gap-4`}>
                         {/* Online card */}
-                        <div className={`min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl ${isMobile ? '' : ''}`} style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)' }}>
+                        <div className={`min-h-[140px] rounded-xl border border-[#C9A84C]/60 p-6 shadow-xl ${isMobile ? '' : ''}`} style={{ backgroundColor: 'rgba(255,255,255,0.15)', boxShadow: '0 8px 32px rgba(201,168,76,0.15)', width: isMobile ? '100%' : undefined }}>
                           {/* Premium badge */}
                           <div className="mb-4 flex items-center gap-2">
                             <span className="flex h-3 w-3 rounded-full bg-green-500 live-dot" />
@@ -628,12 +629,12 @@ export default function HomePage() {
                       </div>
 
                       {/* Promo card */}
-                      <div className={`rounded-lg border border-[#C9A84C]/60 p-4 ${isMobile ? 'mobile-promo-card' : ''}`} style={{ backgroundColor: 'rgba(212,175,55,0.2)' }}>
+                      <div className={`rounded-lg border border-[#C9A84C]/60 ${isMobile ? 'mobile-promo-card' : 'p-4'}`} style={{ backgroundColor: 'rgba(212,175,55,0.2)' }}>
                         <div className={`flex items-center gap-2 text-base font-bold text-[#C9A84C] ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '' }}>
                           <span>🎁</span>
                           GANHE UM MICROFONE CONDENSADOR
                         </div>
-                        <p className={`mt-3 leading-relaxed text-white/90 ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '' }}>
+                        <p className={`mt-3 leading-relaxed text-white/90 ${isMobile ? '' : ''}`} style={{ fontSize: isMobile ? '13px' : '', wordWrap: isMobile ? 'break-word' : undefined, overflowWrap: isMobile ? 'break-word' : undefined }}>
                           Um microfone condensador real, na sua mão, desde a primeira aula. Com ele você já começa a treinar com o equipamento certo — capta sua voz com clareza, elimina ruídos do ambiente e te coloca no modo estúdio toda vez que ligar. Nada de gravar pelo celular ou fone de ouvido. Você chega no primeiro dia de aula com o setup profissional pronto.
                         </p>
                         <p className="mt-3 text-sm font-semibold text-[#C9A84C]">

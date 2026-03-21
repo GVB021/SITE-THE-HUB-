@@ -1,10 +1,16 @@
-export type Role = 'student' | 'admin'
+export type Role = 'aluno' | 'admin' | 'professor'
 
 export interface AuthUser {
   id: string
-  name: string
   email: string
-  role: Role
+  first_name: string | null
+  last_name: string | null
+  hub_role: Role
+}
+
+export interface UserProfile extends AuthUser {
+  phone: string | null
+  whatsapp: string | null
 }
 
 export interface Teacher {

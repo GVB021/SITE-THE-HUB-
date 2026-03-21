@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import clsx from 'clsx'
 import { Button } from '../components/ui/Button'
-import { useAuthStore } from '../store/auth'
+import { useAuth } from '../contexts/AuthContext'
 import { useHashScroll } from '../hooks/useHashScroll'
 
 const navItems = [
@@ -13,7 +13,7 @@ const navItems = [
 ]
 
 export default function MainLayout() {
-  const { user } = useAuthStore()
+  const { user, destinationForRole } = useAuth()
   useHashScroll()
   const [scrolled, setScrolled] = useState(false)
 
@@ -62,7 +62,7 @@ export default function MainLayout() {
 
           <div className="flex items-center gap-3">
             {user ? (
-              <Link to={user.role === 'admin' ? '/admin' : '/student'}>
+              <Link to={destinationForRole(user.hub_role)}>
                 <Button variant="ghost" className="hidden md:inline-flex">
                   Ir para painel
                 </Button>

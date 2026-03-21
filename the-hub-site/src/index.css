@@ -1,19 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-  --hub-bg: #f4f4f5;
-  --hub-card: #ffffff;
-  --hub-text: #09090b;
-  --hub-muted: #71717a;
+  color-scheme: light dark;
+  --hub-bg: #050505;
+  --hub-card: rgba(12, 12, 15, 0.85);
+  --hub-card-border: rgba(255, 255, 255, 0.08);
+  --hub-text: #f8f8f2;
+  --hub-muted: #8b8b96;
   --hub-gold: #c9a84c;
-  --hub-border: rgba(228, 228, 231, 0.5);
-  --hub-blue: #2563eb;
-  --hub-blue-dark: #1d4ed8;
+  --hub-rose: #ff6b8b;
+  --hub-emerald: #3dd598;
+  --hub-ink: #0c0c11;
+  --hub-charcoal: #16161f;
+  --hub-border: rgba(255, 255, 255, 0.08);
+  --hub-blue: #7dd3fc;
+  --hub-blue-dark: #0284c7;
+  --hub-gradient: radial-gradient(circle at 20% 20%, rgba(201, 168, 76, 0.25), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(2, 132, 199, 0.35), transparent 40%),
+    linear-gradient(180deg, #050505 0%, #020202 60%, #050505 100%);
   
   /* Responsive Typography */
   --fluid-title-xl: clamp(48px, 8vw, 72px);
@@ -155,7 +163,7 @@ body {
   margin: 0;
   background: var(--hub-bg);
   color: var(--hub-text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -168,6 +176,14 @@ body.cursor-hidden * {
   min-height: 100vh;
   background: var(--hub-bg);
   color: var(--hub-text);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -185,9 +201,10 @@ body.cursor-hidden * {
 
 .hub-card {
   background: var(--hub-card);
-  border: 1px solid var(--hub-border);
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--hub-card-border);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
 }
 
 .audio-wave {
@@ -366,6 +383,12 @@ body.cursor-hidden * {
   .carousel-mobile {
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
+    padding-top: 60px;
+    height: calc(100dvh - 60px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
   }
   
   /* Mobile panel layout */
@@ -412,22 +435,48 @@ body.cursor-hidden * {
   /* MOBILE SLIDE LAYOUT CORRECTIONS */
   .mobile-slide-layout {
     flex-direction: column !important;
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100%;
+    overflow: hidden;
   }
-  
+
+  .mobile-slide-root {
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .mobile-slide-root > * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
   .mobile-slide-overlay {
     background: rgba(0, 0, 0, 0.80) !important;
   }
-  
+
   .mobile-slide-panel {
     width: 100% !important;
+    max-width: 100% !important;
     padding: 80px 20px 30px 20px !important;
     overflow-y: auto;
+    overflow-x: hidden;
     background: transparent !important;
     backdrop-filter: none !important;
+    box-sizing: border-box;
+    position: relative;
   }
-  
+
+  .mobile-panel-content {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+  }
+
   /* Mobile typography */
   .mobile-title-1 {
     font-size: 28px !important;
@@ -453,22 +502,32 @@ body.cursor-hidden * {
   .mobile-character-badges span {
     font-size: 11px !important;
     padding: 4px 10px !important;
+    max-width: calc(50% - 8px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
   /* Mobile course cards */
   .mobile-course-cards {
+    display: flex !important;
     flex-direction: column !important;
+    width: 100% !important;
   }
-  
+
   .mobile-course-cards > div {
     width: 100% !important;
     font-size: 13px !important;
+    margin-bottom: 12px !important;
   }
-  
+
   /* Mobile promo card */
   .mobile-promo-card {
     font-size: 13px !important;
-    padding: 12px !important;
+    padding: 16px !important;
+    width: 100% !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   /* Mobile buttons */
@@ -484,13 +543,22 @@ body.cursor-hidden * {
   
   /* Mobile navbar */
   .mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
     padding: 12px 16px !important;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    height: 60px;
   }
-  
+
   .mobile-navbar .logo {
     font-size: 16px !important;
   }
-  
+
   .mobile-navbar button {
     font-size: 12px !important;
     padding: 6px 12px !important;
@@ -518,6 +586,22 @@ body.cursor-hidden * {
   .mobile-slide-1-benefits > div {
     flex: 1 1 45% !important;
     min-width: 120px;
+  }
+
+  .mobile-background {
+    background-position: center center !important;
+    background-size: cover !important;
+    filter: blur(2px) brightness(0.35) !important;
+  }
+
+  .mobile-panel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 

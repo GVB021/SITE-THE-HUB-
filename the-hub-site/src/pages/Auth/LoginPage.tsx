@@ -4,21 +4,21 @@ import { Lock, Mail } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { Card } from '../../components/ui/Card'
-import { useAuthStore } from '../../store/auth'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { login, loading, error } = useAuthStore()
+  const { login, loading, error, destinationForRole } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    await login(email, password)
-    const role = email.toLowerCase() === 'admin@thehub.com' ? 'admin' : 'student'
-    if (!error) {
-      navigate((location.state as { from?: Location })?.from?.pathname ?? `/${role}`)
+    const result = await login(email, password)
+    if (result.success) {
+      const target = destinationForRole(result.profile?.hub_role)
+      navigate((location.state as { from?: Location })?.from?.pathname ?? target, { replace: true })
     }
   }
 
