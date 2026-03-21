@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# SITE-THE-HUB-
+=======
 # THE HUB — Plataforma de cursos de dublagem
 
 Aplicação completa feita com React + Vite + Tailwind para apresentar a escola, coletar matrículas, liberar o painel do aluno e oferecer um dashboard administrativo com dados simulados prontos para integração real (Supabase + Mercado Pago).
@@ -63,3 +66,4 @@ Enquanto não houver integrações reais, o app usa mocks e simulações.
 1. Conectar Supabase nos hooks de autenticação e persistência dos dados.
 2. Integrar o checkout real do Mercado Pago e registrar transações.
 3. Substituir os mock data por queries/REST do backend definitivo.
+>>>>>>> 7325d46c (Commit inicial do app de dublagem)
