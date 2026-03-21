@@ -14,15 +14,17 @@ interface AuthState {
 const mockUsers: Record<string, AuthUser> = {
   'aluno@thehub.com': {
     id: safeUuid(),
-    name: 'Isabela Costa',
+    first_name: 'Isabela',
+    last_name: 'Costa',
     email: 'aluno@thehub.com',
-    role: 'student',
+    hub_role: 'aluno',
   },
   'admin@thehub.com': {
     id: safeUuid(),
-    name: 'Equipe THE HUB',
+    first_name: 'Equipe',
+    last_name: 'THE HUB',
     email: 'admin@thehub.com',
-    role: 'admin',
+    hub_role: 'admin',
   },
 }
 

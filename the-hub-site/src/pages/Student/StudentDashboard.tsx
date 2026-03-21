@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Clock4, GraduationCap, Award, CheckCircle2, FileText, MessageCircle } from 'lucide-react'
+import { Calendar, Clock4, GraduationCap, Award, CheckCircle2, FileText, MessageCircle } from 'lucide-react'
 import { Card } from '../../components/ui/Card'
 import { Badge } from '../../components/ui/Badge'
 import { Button } from '../../components/ui/Button'
@@ -15,12 +15,6 @@ type ProgressMilestone = {
   completed: boolean
 }
 
-type Material = {
-  id: string
-  title: string
-  type: 'video' | 'pdf' | 'audio'
-  link: string
-}
 
 type EnrollmentInfo = {
   studioName: string
@@ -81,11 +75,6 @@ export default function StudentDashboard() {
     { id: '2', title: 'Técnicas de Respiração', date: '2024-02-10', completed: true },
     { id: '3', title: 'Sincronia Labial', date: '2024-03-05', completed: false },
     { id: '4', title: 'Interpretação de Personagem', date: '2024-04-01', completed: false },
-  ])
-  const [materials] = useState<Material[]>([
-    { id: '1', title: 'Guia de Aquecimento Vocal', type: 'pdf', link: '#' },
-    { id: '2', title: 'Vídeo: Sincronia na Prática', type: 'video', link: '#' },
-    { id: '3', title: 'Áudio: Treino de Dicção', type: 'audio', link: '#' },
   ])
 
   const formatBRL = (value?: number | null) =>

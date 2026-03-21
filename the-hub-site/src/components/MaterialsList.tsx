@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Trash2, FileText, Video, Music, Image, File, Calendar } from 'lucide-react';
-import { StorageService, MaterialFile } from '../services/storageService';
+import { StorageService } from '../services/storageService';
+import type { MaterialFile } from '../services/storageService';
 
 interface MaterialsListProps {
   studioId?: string;

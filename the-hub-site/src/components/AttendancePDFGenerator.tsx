@@ -7,7 +7,7 @@ import { getSupabaseClient } from '../lib/supabaseClient';
 
 interface AttendancePDFGeneratorProps {
   studioId: string;
-  professorId: string;
+  professorId?: string;
 }
 
 export const AttendancePDFGenerator: React.FC<AttendancePDFGeneratorProps> = ({

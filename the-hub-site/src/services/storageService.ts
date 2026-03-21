@@ -7,6 +7,7 @@ export interface MaterialFile {
   type: string;
   size: number;
   url?: string;
+  storage_path?: string;
   uploaded_at: string;
   studio_id: string;
   professor_id: string;

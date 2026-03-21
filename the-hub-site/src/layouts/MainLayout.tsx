@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import clsx from 'clsx'
 import { Button } from '../components/ui/Button'
 import { useAuth } from '../contexts/AuthContext'
@@ -14,6 +14,8 @@ const navItems = [
 
 export default function MainLayout() {
   const { user, destinationForRole } = useAuth()
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
   useHashScroll()
   const [scrolled, setScrolled] = useState(false)
 
@@ -37,10 +39,10 @@ export default function MainLayout() {
       <header
         className={clsx(
           'fixed inset-x-0 top-0 z-50 border-b border-white/5 transition-all duration-300',
-          scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-lg shadow-[0_8px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent',
+          scrolled || isHomePage ? 'bg-[#0A0A0A]/95 backdrop-blur-lg shadow-[0_8px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent',
         )}
       >
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-2">
           <Link to="/" className="flex items-center gap-3 text-lg font-display tracking-[0.4rem] text-[#C9A84C]">
             <LogoIcon />
             <span>THE HUB</span>
@@ -81,7 +83,7 @@ export default function MainLayout() {
         </div>
       </header>
 
-      <main className="relative pt-28 md:pt-32">
+      <main className={clsx('relative', isHomePage ? 'pt-0' : 'pt-20 md:pt-24')}>
         <Outlet />
       </main>
 

@@ -30,17 +30,6 @@ const slides = [
 const SLIDE_DURATION = 6000
 const TRANSITION_DURATION = 1200
 
-function Logo() {
-  return (
-    <Link to="/" className="flex items-center gap-2">
-      <div className="flex items-center">
-        <span className="text-xl font-bold tracking-tight text-white">THE</span>
-        <span className="ml-1 text-xl font-bold tracking-tight text-[#C9A84C]">HUB</span>
-      </div>
-    </Link>
-  )
-}
-
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -147,9 +136,9 @@ export default function HomePage() {
 
 
   return (
-    <div className="fixed inset-0 h-screen w-screen bg-[#0a0a0a]" style={{ overflowX: 'hidden' }}>
-      {/* Progress Bar */}
-      <div className="fixed left-0 right-0 top-0 z-50 h-1 w-full bg-white/10">
+    <div className="relative h-[calc(100vh-5rem)] md:h-[calc(100vh-6rem)] w-full bg-[#0a0a0a]" style={{ overflowX: 'hidden' }}>
+      {/* Progress Bar - positioned below the fixed header */}
+      <div className="absolute left-0 right-0 top-0 z-30 h-1 w-full bg-white/10">
         <div
           className="h-full bg-[#C9A84C] transition-all ease-linear"
           style={{
@@ -158,40 +147,6 @@ export default function HomePage() {
           }}
         />
       </div>
-
-      {/* Navbar */}
-      <nav className={`fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-6 py-4 md:px-12 ${isMobile ? 'mobile-navbar' : ''}`}>
-        <Logo />
-
-        <div className="hidden items-center gap-8 md:flex">
-          <Link to="/professores" className="text-sm font-medium text-white/90 transition hover:text-white">
-            Professores
-          </Link>
-          <Link to="/turmas" className="text-sm font-medium text-white/90 transition hover:text-white">
-            Turmas
-          </Link>
-          <Link to="/faq" className="text-sm font-medium text-white/90 transition hover:text-white">
-            FAQ
-          </Link>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <Link
-            to="/login"
-            className={`text-sm font-medium text-white/90 transition hover:text-white ${isMobile ? '' : ''}`}
-            style={{ fontSize: isMobile ? '12px' : '' }}
-          >
-            Entrar
-          </Link>
-          <Link
-            to="/matricula"
-            className={`rounded-md bg-[#2563EB] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1D4ED8] hover:scale-[1.02] ${isMobile ? '' : ''}`}
-            style={{ fontSize: isMobile ? '12px' : '', padding: isMobile ? '6px 12px' : '' }}
-          >
-            Matricular-se
-          </Link>
-        </div>
-      </nav>
 
       {/* Slides Container */}
       <div
@@ -474,7 +429,7 @@ export default function HomePage() {
                   <div
                     className={`flex h-full flex-col justify-center overflow-y-auto p-6 md:p-8 lg:p-10 ${isMobile ? 'mobile-slide-panel mobile-panel-container mobile-panel-content' : ''}`}
                     style={{
-                      width: isMobile ? '100%' : 'clamp(320px, 45vw, 500px)',
+                      width: isMobile ? '100%' : '50%',
                       backgroundColor: isMobile ? 'transparent' : 'rgba(0,0,0,0.75)',
                       backdropFilter: isMobile ? 'none' : 'blur(12px)',
                       WebkitBackdropFilter: isMobile ? 'none' : 'blur(12px)',

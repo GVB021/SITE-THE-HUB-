@@ -8,7 +8,7 @@ import { getSupabaseClient } from '../../lib/supabaseClient'
 import { FileUpload } from '../../components/FileUpload'
 import { MaterialsList } from '../../components/MaterialsList'
 import { AttendancePDFGenerator } from '../../components/AttendancePDFGenerator'
-import { MaterialFile } from '../../services/storageService'
+import type { MaterialFile } from '../../services/storageService'
 
 type StudioRow = {
   id: string

@@ -69,11 +69,10 @@ export class PushNotificationService {
       }
 
       // Subscribe to push notifications
+      const vapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY || '';
       const subscription = await PushNotificationService.swRegistration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: PushNotificationService.urlBase64ToUint8Array(
-          (import.meta.env.VITE_VAPID_PUBLIC_KEY) || ''
-        )
+        applicationServerKey: vapidKey ? (PushNotificationService.urlBase64ToUint8Array(vapidKey).buffer as ArrayBuffer) : undefined
       });
 
       PushNotificationService.subscription = subscription;
@@ -154,7 +153,6 @@ export class PushNotificationService {
         badge: data.badge || '/badge-72x72.png',
         tag: data.tag,
         data: data.data,
-        vibrate: [100, 50, 100],
         requireInteraction: true
       });
     } catch (error) {
@@ -165,54 +163,17 @@ export class PushNotificationService {
   /**
    * Save subscription to backend
    */
-  private static async saveSubscriptionToBackend(subscription: PushSubscription): Promise<void> {
-    try {
-      const response = await fetch('/api/push/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          subscription: subscription,
-          userAgent: navigator.userAgent
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to save subscription to backend');
-      }
-    } catch (error) {
-      console.error('Error saving subscription to backend:', error);
-      throw error;
-    }
+  private static async saveSubscriptionToBackend(_subscription: PushSubscription): Promise<void> {
+    // Backend endpoint not implemented yet – skip silently
+    console.log('Push subscription stored locally (no backend endpoint configured)');
   }
 
   /**
    * Remove subscription from backend
    */
   private static async removeSubscriptionFromBackend(): Promise<void> {
-    try {
-      if (!PushNotificationService.subscription) {
-        return;
-      }
-
-      const response = await fetch('/api/push/unsubscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          subscription: PushNotificationService.subscription
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to remove subscription from backend');
-      }
-    } catch (error) {
-      console.error('Error removing subscription from backend:', error);
-      throw error;
-    }
+    // Backend endpoint not implemented yet – skip silently
+    console.log('Push subscription removed locally (no backend endpoint configured)');
   }
 
   /**

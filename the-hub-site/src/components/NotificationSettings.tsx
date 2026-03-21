@@ -6,7 +6,7 @@ import { Badge } from './ui/Badge';
 import { PushNotificationService } from '../services/pushNotificationService';
 
 interface NotificationSettingsProps {
-  userId: string;
+  userId?: string;
   onNotificationPermissionChange?: (granted: boolean) => void;
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Upload, X, File, FileText, Video, Music, Image } from 'lucide-react';
-import { StorageService, MaterialFile } from '../services/storageService';
+import { Upload } from 'lucide-react';
+import { StorageService } from '../services/storageService';
+import type { MaterialFile } from '../services/storageService';
 
 interface FileUploadProps {
   studioId: string;
@@ -19,22 +20,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const getFileIcon = (type: string) => {
-    if (type.startsWith('image/')) return Image;
-    if (type.startsWith('video/')) return Video;
-    if (type.startsWith('audio/')) return Music;
-    if (type.includes('pdf') || type.includes('document')) return FileText;
-    return File;
-  };
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
 
   const validateFile = (file: File): string | null => {
     const maxSize = 50 * 1024 * 1024; // 50MB

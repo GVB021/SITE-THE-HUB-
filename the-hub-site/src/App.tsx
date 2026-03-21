@@ -19,9 +19,8 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute'
 function App() {
   return (
     <Routes>
-      <Route index element={<HomePage />} />
-
       <Route element={<MainLayout />}>
+        <Route index element={<HomePage />} />
         <Route path="/matricula" element={<EnrollmentPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route>
